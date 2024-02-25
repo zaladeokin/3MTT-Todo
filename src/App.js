@@ -1,33 +1,29 @@
-import { useEffect } from 'react';
-import './App.css';
+import { useEffect, useState } from 'react';
+import './css/App.css';
 
-function Header() {
-  return(
-    <header>
-      <h1>My Todo</h1>
-      <nav>
-        <ul id='panel'>
-          <li className='selected'>All</li>
-          <li>Pending</li>
-          <li>Accomplished</li>
-        </ul>
-      </nav>
-    </header>
-  );  
-}
+import Header from './component/Header';
+import Todo from './component/Todo';
 
 function App() {
+  const [todos, setTodos]= useState([]);
+
+
   useEffect(()=>{
-    fetch("https://dummyjson.com/todos")
+    fetch("https://dummyjson.com/todos/user/1?limit=5")
     .then((res)=> res.json())
-    .then((data)=> console.log(data.todos));
-  });
+    .then((data)=>{
+      setTodos(data.todos)
+    });
+  }, []);
+
+  console.log(todos);
+
 
   return (
     <>
       <Header />
-      <section>
-        
+      <section className='task-container'>
+        { todos.length > 0 ? todos.map((task)=> (<Todo task={task} />)) : "nff" }
       </section>
     </>
   );

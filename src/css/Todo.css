@@ -1,0 +1,57 @@
+/* Todo.js */
+
+.task{
+    padding: 2% 1%;
+    margin: 1%;
+    flex-basis: 90%;
+    border-radius: 0.5em;
+    background-color: #d9d9d9;
+}
+
+.status{
+    /* border-top: 1px solid #000; */
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    font-size: 0.8em;
+}
+
+.status button{
+    width: 10vmax;
+    background-color: #fff;
+}
+
+.status button:hover{
+    background-color: black;
+    color: #fff;
+}
+
+.status button:active{
+    background-color: #91cf34;
+}
+
+.status button:first-of-type{
+    color: #ff0000;
+}
+
+.archieved, .pending{
+    background-color: #fff;
+    padding: 1%;
+    font-weight: 600;
+    font-style: oblique;
+}
+
+.archieved{
+    color: #91cf34;
+}
+
+.pending{
+    color: #ff0000;
+}
+
+@media screen and (min-width: 950px) {
+    .task {
+        flex-basis: 45%;
+    }
+}
