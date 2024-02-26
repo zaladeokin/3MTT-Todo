@@ -1,6 +1,7 @@
 import '../css/Header.css';
 
 function Header() {
+  console.log("Header mount");
   return(
     <header>
       <h1>My Todo</h1>

@@ -1,8 +1,8 @@
-import { type } from '@testing-library/user-event/dist/type';
 import { useTodoContext } from '../TodoContext';
 import '../css/Todo.css'
 
 function Todo({task, serial}) {
+    console.log("Todo Mount");
     const dispatch= useTodoContext().dispatch;
 
     function handleDelete(id){

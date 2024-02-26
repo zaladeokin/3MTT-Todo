@@ -2,8 +2,8 @@ import { createContext, useContext, useReducer } from "react";
 
 const TodoContext= createContext({});
 
-function todoReducer(todo, action){
-    let prevTodo= [...todo]
+function todoReducer(todos, action){
+    // let prevTodo= [...todo]
     switch(action.type){
         case 'init' :{
             console.log("Initializing Todo");
@@ -11,7 +11,8 @@ function todoReducer(todo, action){
         }
         case 'delete' :{
             console.log("Deleting todo id: "+action.id);
-            return todo;
+
+            return todos.filter((todo)=> todo.id !== action.id);
         }
         default: {
             throw Error('Unknown action: ' + action.type);
@@ -20,7 +21,7 @@ function todoReducer(todo, action){
 }
 
 export function TodoState({children}){
-
+    console.log("Todo State");
     const [todos, dispatchTodo]= useReducer(todoReducer, []);
     return(
         <TodoContext.Provider value={{ list: todos, dispatch: dispatchTodo }}>
