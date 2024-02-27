@@ -11,6 +11,14 @@ function Todo({task, serial}) {
             id : id
         });
     }
+
+    function handleMark(id) {
+        dispatch({
+            type : "mark",
+            id : id,
+            status : !task.completed
+        });
+    }
     
     return(
         <section className="task">
@@ -21,7 +29,7 @@ function Todo({task, serial}) {
             <div className='status'>
                 <span className={task.completed ? 'archieved' : 'pending'}>{task.completed ? "Achieved" : "pending"}</span>
                 <button onClick={()=> handleDelete(task.id)}>Delete</button>
-                <button>{task.completed ? "Undo" : "Achieved"}</button>
+                <button onClick={()=> handleMark(task.id)}>{task.completed ? "Undo" : "Achieved"}</button>
             </div>
         </section>
     );
