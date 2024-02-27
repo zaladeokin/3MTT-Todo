@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import '../css/Header.css';
 
-function Header() {
+const Header= memo(function Header() {
   console.log("Header mount");
   return(
     <header>
@@ -14,6 +15,6 @@ function Header() {
       </nav>
     </header>
   );  
-}
+});
 
 export default Header;
