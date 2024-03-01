@@ -2,7 +2,7 @@ import { memo } from 'react';
 import '../css/Header.css';
 
 const Header= memo(function Header({updateScope}) {
-  console.log("Header mount");
+  // console.log("Header mount");
 
   const handleClick= (e, status)=>{
       updateScope(status);

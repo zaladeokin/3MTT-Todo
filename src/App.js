@@ -1,3 +1,4 @@
+import { init } from "./library/promise"
 import { useEffect, useState } from 'react';
 import { useTodoContext } from './TodoContext';
 
@@ -8,30 +9,15 @@ import Todo from './component/Todo';
 import AddTodo from './component/AddTodo';
 
 function App() {
-  console.log("App mount");
+  // console.log("App mount");
   const [scope, setScope]= useState('all');
   const dispatch= useTodoContext().dispatch;
   let todos= useTodoContext().list;
 
 
   useEffect(()=>{
-    console.log("App useEffect");
-    fetch("https://dummyjson.com/todos/user/1?limit=5")
-    .then((res)=> res.json())
-    .then((data)=> dispatch({
-      type: "init",
-      todos: data.todos.reverse()
-    }))
-    .catch((err)=>{
-      if(process.env.NODE_ENV === 'development') console.log(err);
-      else{
-        console.log('An error occur');
-        dispatch({
-          type: "init",
-          todos: []
-        });
-      }
-    })
+    // console.log("App useEffect");
+    init("https://dummyjson.com/todos/user/1?limit=5", dispatch);  
   }, [dispatch]);
 
   const handleScope= (status)=>{
@@ -46,7 +32,7 @@ function App() {
       <Header updateScope={handleScope} />
       <AddTodo />
       <section className='task-container'>
-        { todos.length > 0 ? todos.map((task, index)=> (<Todo task={task} serial={index + 1} key={task.id} />)) : "nff" }
+        { todos.length > 0 ? todos.map((task, index)=> (<Todo task={task} serial={index + 1} key={task.id} />)) : (<p> You have no item on your Todo</p>) }
       </section>
     </>
   );

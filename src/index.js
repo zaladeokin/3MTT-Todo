@@ -4,7 +4,7 @@ import './css/index.css';
 import { TodoState } from './TodoContext';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
-console.log("index.js");
+// console.log("index.js");
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

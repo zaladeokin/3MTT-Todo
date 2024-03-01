@@ -7,11 +7,11 @@ function todoReducer(todos, action){
 
     switch(action.type){
         case 'init' :{
-            console.log("Initializing Todo");
+            // console.log("Initializing Todo");
             return action.todos;
         }
         case 'delete' :{
-            console.log("Deleting todo id: "+action.id);
+            // console.log("Deleting todo id: "+action.id);
 
             return todos.filter((todo)=> todo.id !== action.id);
         }
@@ -26,7 +26,7 @@ function todoReducer(todos, action){
             return prevTodos;
         }
         case 'mark' :{
-            console.log("Marking Item");
+            // console.log("Marking Item");
             
             prevTodos.forEach((todo, index, arr)=>{
                 if(todo.id === action.id) arr[index]= {...todo, completed : action.status};
@@ -40,7 +40,7 @@ function todoReducer(todos, action){
 }
 
 export function TodoState({children}){
-    console.log("Todo State");
+    // console.log("Todo State");
     const [todos, dispatchTodo]= useReducer(todoReducer, []);
     return(
         <TodoContext.Provider value={{ list: todos, dispatch: dispatchTodo }}>
