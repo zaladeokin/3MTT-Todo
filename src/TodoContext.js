@@ -15,6 +15,16 @@ function todoReducer(todos, action){
 
             return todos.filter((todo)=> todo.id !== action.id);
         }
+        case 'add' :{
+            let newTask= {
+                id : prevTodos[0].id + 1,
+                todo: action.value,
+                completed: false
+            }
+            
+            prevTodos.unshift(newTask);
+            return prevTodos;
+        }
         case 'mark' :{
             console.log("Marking Item");
             

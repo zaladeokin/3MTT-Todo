@@ -1,0 +1,26 @@
+#addTodo{
+    margin-bottom: 1em;
+}
+
+#addTodo label, #addTodo input[type='text'], #addTodo button{
+    display: block;
+    margin:  0.5em auto;
+}
+
+#addTodo label{
+    width: fit-content;
+    color: #91cf34;
+}
+
+#addTodo input {
+    width: 80%;border: 1px #d9d9d9 solid;
+    padding: 1%;
+}
+
+@media screen and (min-width: 950px) {
+    #addTodo{
+        width: 50%;
+        margin: 0 auto;
+        margin-bottom: 1em;
+    }
+}

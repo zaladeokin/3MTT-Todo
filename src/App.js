@@ -5,6 +5,7 @@ import './css/App.css';
 
 import Header from './component/Header';
 import Todo from './component/Todo';
+import AddTodo from './component/AddTodo';
 
 function App() {
   console.log("App mount");
@@ -18,14 +19,25 @@ function App() {
     .then((res)=> res.json())
     .then((data)=> dispatch({
       type: "init",
-      todos: data.todos
-    }));
+      todos: data.todos.reverse()
+    }))
+    .catch((err)=>{
+      if(process.env.NODE_ENV === 'development') console.log(err);
+      else{
+        console.log('An error occur');
+        dispatch({
+          type: "init",
+          todos: []
+        });
+      }
+    })
   }, [dispatch]);
 
 
   return (
     <>
       <Header />
+      <AddTodo />
       <section className='task-container'>
         { todos.length > 0 ? todos.map((task, index)=> (<Todo task={task} serial={index + 1} key={task.id} />)) : "nff" }
       </section>
