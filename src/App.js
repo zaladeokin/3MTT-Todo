@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTodoContext } from './TodoContext';
 
 import './css/App.css';
@@ -9,8 +9,9 @@ import AddTodo from './component/AddTodo';
 
 function App() {
   console.log("App mount");
-  const todos= useTodoContext().list;
+  const [scope, setScope]= useState('all');
   const dispatch= useTodoContext().dispatch;
+  let todos= useTodoContext().list;
 
 
   useEffect(()=>{
@@ -33,10 +34,16 @@ function App() {
     })
   }, [dispatch]);
 
+  const handleScope= (status)=>{
+    setScope(v => v= status);
+  }
+
+  if(scope === "pending") todos= todos.filter((todo)=> todo.completed === false);
+  else if(scope === "accomplished") todos= todos.filter((todo)=> todo.completed === true);
 
   return (
     <>
-      <Header />
+      <Header updateScope={handleScope} />
       <AddTodo />
       <section className='task-container'>
         { todos.length > 0 ? todos.map((task, index)=> (<Todo task={task} serial={index + 1} key={task.id} />)) : "nff" }
